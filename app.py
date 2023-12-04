@@ -28,7 +28,7 @@ def dict_vals(dict):
 
 def hacer_prediccion(prediccion, dictionary):
     lifestyle_changes = []
-    if predict_type > 0:
+    if prediccion > 0:
         if 'Cholesterol' in new_person and new_person['Smoking'] == 1:
             lifestyle_changes.append('tienes que dejar de fumar')
         if 'BMI' in new_person and new_person['BMI'] < 18.5:
@@ -87,9 +87,6 @@ if prediction:
     prediccion = model.predict_proba(x)[:, 1]
     resultado = hacer_prediccion(prediccion, x)
     resultado
-
-
-
 
 else:
     st.header("Welcome page")
