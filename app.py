@@ -17,7 +17,8 @@ st.header("PREDICCIÓN ATAQUES AL CORAZÓN")
 st.sidebar.text("Menú")
 
 home = st.sidebar.button("Home")
-datos = st.sidebar.button("Predicciones")
+datos = st.sidebar.button("Introducir datos")
+prediction = st.sidebar.button("Hacer predicciones")
 
 
 def dict_vals(dict):
@@ -54,8 +55,8 @@ def hacer_prediccion(prediccion, dictionary):
         st.write("Esto puede reducir tu riesgo de ataque al corazón.")
         
     if prediccion > 0.75:
-        st.write("Deberías consultar con tu médico.")
-        st.write("Riesgo de ataque al corazón:", prediccion)
+        st.warning("Deberías consultar con tu médico.")
+        st.warning("Riesgo de ataque al corazón:", prediccion)
 
 
 
@@ -75,9 +76,11 @@ if datos:
     diabetes = st.selectbox('Diabetes: (0: No, 1: Sí)', [0,1])
 
     nuevo_paciente = {'Cholesterol': cholesterol, 'Diabetes': diabetes, 'Obesity': obesidad, 'Exercise Hours Per Week': exercise, 
-         "Stresss Level": stress, 'BMI': BMI, 'Triglycerides': triglycerides, , 'Sleep Hours Per Day' : sleep, 'systolic': systolic}
+         "Stresss Level": stress, 'BMI': BMI, 'Triglycerides': triglycerides, 'Sleep Hours Per Day' : sleep, 'systolic': systolic}
     x = dict_vals(nuevo_paciente)
 
+if prediction:
+    st.header("Predicciones")
     st.text("A continuación mostramos la prediccón:")
 
     model.predict(x)
