@@ -2,8 +2,12 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
+import os
 
-with open('modelo_entrenado.pkl', 'rb') as archivo_modelo:
+
+ruta_modelo = os.path.join(os.getcwd(), 'modelo_entrenado.pkl')
+
+with open(ruta_modelo, 'rb') as archivo_modelo:
     modelo = pickle.load(archivo_modelo)
 
 st.set_page_config(
