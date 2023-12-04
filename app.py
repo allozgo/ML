@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import pickle
 import os
-
+import sklearn
 
 ruta_modelo = os.path.join(os.getcwd(), 'modelo_entrenado.pkl')
 
