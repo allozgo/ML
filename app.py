@@ -26,7 +26,7 @@ def dict_vals(dict):
     x = np.array([x])
     return x
 
-def hacer_prediccion(predict_type, dictionary):
+def hacer_prediccion(prediccion, dictionary):
     lifestyle_changes = []
     if predict_type > 0:
         if 'Cholesterol' in new_person and new_person['Smoking'] == 1:
@@ -49,23 +49,20 @@ def hacer_prediccion(predict_type, dictionary):
             lifestyle_changes.append('tienes que controlar tus trigliceridos')  
         if 'Diabetes' in new_person and new_person['Diabetes'] == 1:
             lifestyle_changes.append('tienes que controlar tu diabetes')  
-        st.write("Heart attack risk:", predict_type)
+        st.write("Heart attack risk:", prediccion)
         for i in lifestyle_changes:
             st.write(f"Por favor, {i},")
         st.write("Esto puede reducir tu riesgo de ataque al corazón.")
         
-    if predict_type > 0.75:
+    if prediccion > 0.75:
         st.write("Deberías consultar con tu médico.")
-        st.write("Riesgo de ataque al corazón:", predict_type)
+        st.write("Riesgo de ataque al corazón:", prediccion)
 
-nuevo_paciente = {'Cholesterol': cholesterol, 'systolic': systolic,
-       'Diabetes': diabetes, 'Obesity': obesidad, 'Exercise Hours Per Week': exercise,
-        'BMI': BMI, 'Triglycerides': triglycerides, "Stresss Level": stress, 'Sleep Hours Per Day' : sleep}
-x = dict_vals(nuevo_paciente)
+
 
 if datos:
     st.header("Home page")
-    st.text("A continuación mostramos data:")
+    st.text("A continuación introduce tus datos:")
 
     cholesterol = st.number_input('Colesterol:', min_value=0.0, max_value=1000.0)
     BMI = st.number_input('Índice de masa corporal', min_value=0.0, max_value=100.0)
@@ -78,10 +75,16 @@ if datos:
     triglycerides = st.number_input('Trigliceridos', min_value=0.0, max_value=1000.0)
     diabetes = st.selectbox('Diabetes: (0: No, 1: Sí)', [0,1])
 
+    nuevo_paciente = {'Cholesterol': cholesterol, 'Diabetes': diabetes, 'Obesity': obesidad, 'Exercise Hours Per Week': exercise, 
+         "Stresss Level": stress, 'BMI': BMI, 'Triglycerides': triglycerides, , 'Sleep Hours Per Day' : sleep, 'systolic': systolic}
+    x = dict_vals(nuevo_paciente)
+
+    st.text("A continuación mostramos la prediccón:")
+
     model.predict(x)
-    predict_type = model.predict_proba(x)[:, 1]
-    result = determine_lifestyle_changes(predict_type, nuevo_paciente)
-    result
+    prediccion = model.predict_proba(x)[:, 1]
+    resultado = hacer_prediccion(prediccion, x)
+    resultado
 
 
 
