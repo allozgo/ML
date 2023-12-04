@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import pickle
 import os
-
+import sklearn
 
 with open('modelo_entrenado.pkl', 'rb') as archivo_modelo:
     modelo = pickle.load(archivo_modelo)
