@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
-from heart_attack.ipynb import cargar_modelo, hacer_prediccion 
 
 with open('modelo_entrenado.pkl', 'rb') as archivo_modelo:
     modelo = pickle.load(archivo_modelo)
