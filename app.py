@@ -4,10 +4,9 @@ import numpy as np
 import pickle
 import os
 
-from joblib import load
 
 with open('modelo_entrenado.pkl', 'rb') as archivo_modelo:
-    modelo = load(archivo_modelo)
+    modelo = pickle.load(archivo_modelo)
 
 st.set_page_config(
     page_title="Predicción ataques al corazón",
@@ -87,7 +86,7 @@ if prediction:
     st.text("A continuación mostramos la prediccón:")
 
     model.predict(x)
-    prediccion = model.predict_proba(x)[:, 1]
+    prediccion = modelo.predict_proba(x)[:, 1]
     resultado = hacer_prediccion(prediccion, nuevo_paciente)
     resultado
 
