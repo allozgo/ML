@@ -26,28 +26,28 @@ def dict_vals(dict):
     x = np.array([x])
     return x
 
-def hacer_prediccion(prediccion, dictionary):
+def hacer_prediccion(prediccion, nuevo_paciente):
     lifestyle_changes = []
     if prediccion > 0:
-        if 'Cholesterol' in new_person and new_person['Smoking'] == 1:
+        if 'Cholesterol' in nuevo_paciente and nuevo_paciente['Smoking'] == 1:
             lifestyle_changes.append('tienes que dejar de fumar')
-        if 'BMI' in new_person and new_person['BMI'] < 18.5:
+        if 'BMI' in nuevo_paciente and nuevo_paciente['BMI'] < 18.5:
             lifestyle_changes.append('tienes que ganar peso')
-        elif 'BMI' in new_person and new_person['BMI'] > 25:
+        elif 'BMI' in nuevo_paciente and nuevo_paciente['BMI'] > 25:
             lifestyle_changes.append('tienes que perder peso')
-        if 'Exercise Hours Per Week' in new_person and new_person['Exercise Hours Per Week'] < 1.25:
+        if 'Exercise Hours Per Week' in nuevo_paciente and nuevo_paciente['Exercise Hours Per Week'] < 1.25:
             lifestyle_changes.append('tienes que hacer más ejercicio')
-        if 'systolic' in new_person and new_person['Diet'] > 120:
+        if 'systolic' in nuevo_paciente and nuevo_paciente['Diet'] > 120:
             lifestyle_changes.append('tienes que controlar tu presión arterial')
-        if 'Stresss Level' in new_person and new_person['Stresss Level'] > 5:
+        if 'Stresss Level' in nuevo_paciente and nuevo_paciente['Stresss Level'] > 5:
             lifestyle_changes.append('tienes que aprender a relajarte')
-        if 'Obesity' in new_person and new_person['Obesity'] == 1:
+        if 'Obesity' in nuevo_paciente and nuevo_paciente['Obesity'] == 1:
             lifestyle_changes.append('tienes que comer mejor')  
-        if 'Sleep Hours Per Day' in new_person and new_person['Sleep Hours Per Day'] < 7:
+        if 'Sleep Hours Per Day' in nuevo_paciente and nuevo_paciente['Sleep Hours Per Day'] < 7:
             lifestyle_changes.append('tienes que dormir más')  
-        if 'Triglycerides' in new_person and new_person['Triglycerides'] > 150:
+        if 'Triglycerides' in nuevo_paciente and nuevo_paciente['Triglycerides'] > 150:
             lifestyle_changes.append('tienes que controlar tus trigliceridos')  
-        if 'Diabetes' in new_person and new_person['Diabetes'] == 1:
+        if 'Diabetes' in nuevo_paciente and nuevo_paciente['Diabetes'] == 1:
             lifestyle_changes.append('tienes que controlar tu diabetes')  
         st.write("Heart attack risk:", prediccion)
         for i in lifestyle_changes:
@@ -85,7 +85,7 @@ if prediction:
 
     model.predict(x)
     prediccion = model.predict_proba(x)[:, 1]
-    resultado = hacer_prediccion(prediccion, x)
+    resultado = hacer_prediccion(prediccion, nuevo_paciente)
     resultado
 
 else:
