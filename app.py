@@ -5,10 +5,10 @@ import pickle
 import os
 import sklearn
 
-ruta_modelo = os.path.join(os.getcwd(), 'modelo_entrenado.pkl')
+from joblib import load
 
-with open(ruta_modelo, 'rb') as archivo_modelo:
-    modelo = pickle.load(archivo_modelo)
+with open('modelo_entrenado.pkl', 'rb') as archivo_modelo:
+    modelo = load(archivo_modelo)
 
 st.set_page_config(
     page_title="Predicción ataques al corazón",
