@@ -31,7 +31,7 @@ def dict_vals(dict):
 def hacer_prediccion(prediccion, nuevo_paciente):
     lifestyle_changes = []
     if prediccion > 0:
-        if 'Cholesterol' in nuevo_paciente and nuevo_paciente['Smoking'] == 1:
+        if 'Cholesterol' in nuevo_paciente and nuevo_paciente['Cholesterol'] == 1:
             lifestyle_changes.append('tienes que dejar de fumar')
         if 'BMI' in nuevo_paciente and nuevo_paciente['BMI'] < 18.5:
             lifestyle_changes.append('tienes que ganar peso')
@@ -39,7 +39,7 @@ def hacer_prediccion(prediccion, nuevo_paciente):
             lifestyle_changes.append('tienes que perder peso')
         if 'Exercise Hours Per Week' in nuevo_paciente and nuevo_paciente['Exercise Hours Per Week'] < 1.25:
             lifestyle_changes.append('tienes que hacer más ejercicio')
-        if 'systolic' in nuevo_paciente and nuevo_paciente['Diet'] > 120:
+        if 'systolic' in nuevo_paciente and nuevo_paciente['systolic'] > 120:
             lifestyle_changes.append('tienes que controlar tu presión arterial')
         if 'Stresss Level' in nuevo_paciente and nuevo_paciente['Stresss Level'] > 5:
             lifestyle_changes.append('tienes que aprender a relajarte')
