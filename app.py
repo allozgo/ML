@@ -22,6 +22,7 @@ home = st.sidebar.button("Home")
 datos = st.sidebar.button("Introducir datos")
 prediction = st.sidebar.button("Hacer predicciones")
 
+nuevo_paciente = None
 
 def dict_vals(dict):
     x = list(dict.values())
