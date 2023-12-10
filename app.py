@@ -67,15 +67,22 @@ if datos:
     st.header("Datos")
     st.text("A continuación introduce tus datos:")
 
+    #key_cholesterol = "cholesterol"
     cholesterol = st.number_input('Colesterol:')
-    BMI = st.number_input('Índice de masa corporal', min_value=0.0, max_value=100.0)
-    exercise = st.number_input('Horas de ejecicio semanales', min_value=0.0, max_value=100.0)
-    systolic = st.number_input('Valor de tu presión arterial sistólica', min_value=0.0, max_value=200.0)
-    stress = st.number_input('tu nivel de estrés de 0 a 10', min_value=0.0, max_value=10.0)
-    obesidad = st.selectbox('Obesidad: (0: No, 1: Sí)', [0,1])
-    sleep = st.number_input('Horas de sueño diarias', min_value=0.0, max_value=1.0)
-    triglycerides = st.number_input('Trigliceridos', min_value=0.0, max_value=1000.0)
-    diabetes = st.selectbox('Diabetes: (0: No, 1: Sí)', [0,1])
+    #key_BMI = "BMI"
+    BMI = st.number_input('Índice de masa corporal')
+    #key_exercise = 'exercise'
+    exercise = st.number_input('Horas de ejecicio semanales')
+    #key_systolic = 'systolic'
+    systolic = st.number_input('Valor de tu presión arterial sistólica')
+    #key_stress = 'stress'
+    stress = st.number_input('tu nivel de estrés de 0 a 10')
+    key_obesidad = 'obesidad'
+    obesidad = st.selectbox('Obesidad: (0: No, 1: Sí)', [0,1], key = key_obesidad)
+    sleep = st.number_input('Horas de sueño diarias')
+    triglycerides = st.number_input('Trigliceridos')
+    key_diabetes = 'diabetes'
+    diabetes = st.selectbox('Diabetes: (0: No, 1: Sí)', [0,1], key = key_diabetes)
 
     if st.button("Procesar Datos"):
         nuevo_paciente = {'Cholesterol': cholesterol, 'Diabetes': diabetes, 'Obesity': obesidad, 'Exercise Hours Per Week': exercise, 
