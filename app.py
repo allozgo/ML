@@ -5,6 +5,8 @@ import pickle
 import os
 import sklearn
 
+@st.cache(allow_output_mutation=True)
+
 with open('modelo_entrenado.pkl', 'rb') as archivo_modelo:
     modelo = pickle.load(archivo_modelo)
 
