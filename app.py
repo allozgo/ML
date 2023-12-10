@@ -82,8 +82,8 @@ if datos:
     key_stress = "stress"
     stress = st.number_input('Tu nivel de estrés de 0 a 10', min_value=0.0, max_value=10.0, key=key_stress)
     
-    key_obesidad = "obesidad"
-    obesidad = st.selectbox('Obesidad: (0: No, 1: Sí)', [0, 1], key=key_obesidad)
+    #key_obesidad = "obesidad"
+    #obesidad = st.selectbox('Obesidad: (0: No, 1: Sí)', [0, 1], key=key_obesidad)
     
     key_sleep = "sleep"
     sleep = st.number_input('Horas de sueño diarias', min_value=0.0, max_value=1.0, key=key_sleep)
