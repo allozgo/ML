@@ -8,6 +8,8 @@ import sklearn
 with open('modelo_entrenado.pkl', 'rb') as archivo_modelo:
     modelo = pickle.load(archivo_modelo)
 
+x = []
+
 st.set_page_config(
     page_title="Predicción ataques al corazón",
     page_icon=":heart:",
