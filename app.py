@@ -67,20 +67,22 @@ if datos:
     st.header("Datos")
     st.text("A continuación introduce tus datos:")
 
-    #key_cholesterol = "cholesterol"
-    cholesterol = st.number_input('Colesterol:')
-    #key_BMI = "BMI"
-    BMI = st.number_input('Índice de masa corporal')
-    #key_exercise = 'exercise'
-    exercise = st.number_input('Horas de ejecicio semanales')
-    #key_systolic = 'systolic'
-    systolic = st.number_input('Valor de tu presión arterial sistólica')
-    #key_stress = 'stress'
-    stress = st.number_input('tu nivel de estrés de 0 a 10')
+    key_cholesterol = "cholesterol"
+    cholesterol = st.number_input('Colesterol:', key = key_cholesterol)
+    key_BMI = "BMI"
+    BMI = st.number_input('Índice de masa corporal', key = key_BMI)
+    key_exercise = 'exercise'
+    exercise = st.number_input('Horas de ejecicio semanales', key = key_exercise)
+    key_systolic = 'systolic'
+    systolic = st.number_input('Valor de tu presión arterial sistólica', key = key_systolic)
+    key_stress = 'stress'
+    stress = st.number_input('tu nivel de estrés de 0 a 10', key = key_stress)
     key_obesidad = 'obesidad'
     obesidad = st.selectbox('Obesidad: (0: No, 1: Sí)', [0,1], key = key_obesidad)
-    sleep = st.number_input('Horas de sueño diarias')
-    triglycerides = st.number_input('Trigliceridos')
+    key_sleep = 'sleep'
+    sleep = st.number_input('Horas de sueño diarias', key = key_sleep)
+    key_triglycerides = 'triglycerides'
+    triglycerides = st.number_input('Trigliceridos', key = key_triglycerides)
     key_diabetes = 'diabetes'
     diabetes = st.selectbox('Diabetes: (0: No, 1: Sí)', [0,1], key = key_diabetes)
 
