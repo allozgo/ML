@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducir Datos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Introducir Datos</h2>
+
+<form id="formularioDatos" action="{{ url_for('datos') }}" method="post">
+    <div>
+        <label for="cholesterol">Colesterol:</label>
+        <input type="number" id="cholesterol" name="cholesterol" required>
+    </div>
+
+    <div>
+        <label for="BMI">Índice de masa corporal:</label>
+        <input type="number" id="BMI" name="BMI" required>
+    </div>
+
+    <div>
+        <label for="exercise">Horas de ejercicio semanales:</label>
+        <input type="number" id="exercise" name="exercise" required>
+    </div>
+
+    <div>
+        <label for="systolic">Valor de tu presión arterial sistólica:</label>
+        <input type="number" id="systolic" name="systolic" required>
+    </div>
+
+    <div>
+        <label for="stress">Nivel de estrés (0 a 10):</label>
+        <input type="number" id="stress" name="stress" required>
+    </div>
+
+    <div>
+        <label for="obesity">Obesidad (0: No, 1: Sí):</label>
+        <select id="obesity" name="obesity" required>
+            <option value="0">No</option>
+            <option value="1">Sí</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="sleep">Horas de sueño diarias:</label>
+        <input type="number" id="sleep" name="sleep" required>
+    </div>
+
+    <div>
+        <label for="triglycerides">Triglicéridos:</label>
+        <input type="number" id="triglycerides" name="triglycerides" required>
+    </div>
+
+    <div>
+        <label for="diabetes">Diabetes (0: No, 1: Sí):</label>
+        <select id="diabetes" name="diabetes" required>
+            <option value="0">No</option>
+            <option value="1">Sí</option>
+        </select>
+    </div>
+
+    <input type="submit" value="Procesar Datos">
+</form>
+
+</body>
+</html>

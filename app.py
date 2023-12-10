@@ -106,10 +106,10 @@ if prediction:
     st.header("Predicciones")
     st.text("A continuación mostramos la prediccón:")
 
-    model.predict(x)
+    modelo.predict(x)
     prediccion = modelo.predict_proba(x)[:, 1]
     resultado = hacer_prediccion(prediccion, nuevo_paciente)
-    resultado
+    st.text(resultado)
 
 if home:
     st.header("Welcome page")
