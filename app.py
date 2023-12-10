@@ -78,9 +78,10 @@ if datos:
     triglycerides = st.number_input('Trigliceridos', min_value=0.0, max_value=1000.0)
     diabetes = st.selectbox('Diabetes: (0: No, 1: Sí)', [0,1])
 
-    nuevo_paciente = {'Cholesterol': cholesterol, 'Diabetes': diabetes, 'Obesity': obesidad, 'Exercise Hours Per Week': exercise, 
-         "Stresss Level": stress, 'BMI': BMI, 'Triglycerides': triglycerides, 'Sleep Hours Per Day' : sleep, 'systolic': systolic}
-    x = dict_vals(nuevo_paciente)
+    if st.button("Procesar Datos"):
+        nuevo_paciente = {'Cholesterol': cholesterol, 'BMI': BMI, ...}
+        x = dict_vals(nuevo_paciente)
+        st.success("Datos procesados con éxito!")
 
 if prediction:
     st.header("Predicciones")
