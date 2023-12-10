@@ -32,8 +32,8 @@ def dict_vals(dict):
 def hacer_prediccion(prediccion, nuevo_paciente):
     lifestyle_changes = []
     if prediccion > 0:
-        if 'Cholesterol' in nuevo_paciente and nuevo_paciente['Cholesterol'] == 1:
-            lifestyle_changes.append('tienes que dejar de fumar')
+        if 'Cholesterol' in nuevo_paciente and nuevo_paciente['Cholesterol'] > 240:
+            lifestyle_changes.append('tienes que mejorar tu dieta y hacer ejercicior')
         if 'BMI' in nuevo_paciente and nuevo_paciente['BMI'] < 18.5:
             lifestyle_changes.append('tienes que ganar peso')
         elif 'BMI' in nuevo_paciente and nuevo_paciente['BMI'] > 25:
@@ -64,10 +64,10 @@ def hacer_prediccion(prediccion, nuevo_paciente):
 
 
 if datos:
-    st.header("Home page")
+    st.header("Datos")
     st.text("A continuación introduce tus datos:")
 
-    cholesterol = st.number_input('Colesterol:', min_value=0.0, max_value=1000.0)
+    cholesterol = st.number_input('Colesterol:')
     BMI = st.number_input('Índice de masa corporal', min_value=0.0, max_value=100.0)
     exercise = st.number_input('Horas de ejecicio semanales', min_value=0.0, max_value=100.0)
     systolic = st.number_input('Valor de tu presión arterial sistólica', min_value=0.0, max_value=200.0)
