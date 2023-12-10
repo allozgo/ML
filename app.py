@@ -74,7 +74,6 @@ if datos:
     stress = st.number_input('tu nivel de estrés de 0 a 10', min_value=0.0, max_value=10.0)
     obesidad = st.selectbox('Obesidad: (0: No, 1: Sí)', [0,1])
     sleep = st.number_input('Horas de sueño diarias', min_value=0.0, max_value=1.0)
-    obesidad = st.selectbox('Obesidad: (0: No, 1: Sí)', [0,1])
     triglycerides = st.number_input('Trigliceridos', min_value=0.0, max_value=1000.0)
     diabetes = st.selectbox('Diabetes: (0: No, 1: Sí)', [0,1])
 
