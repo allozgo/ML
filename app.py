@@ -126,7 +126,7 @@ if prediction:
     st.text("A continuación mostramos la prediccón:")
 
     if st.session_state.nuevo_paciente:
-        x = dict_vals(st.session_state.nuevo_paciente)
+        #x = dict_vals(st.session_state.nuevo_paciente)
         prediccion = modelo.predict_proba(x)[:, 1][0]
         lifestyle_changes, mensaje_prediccion = hacer_prediccion(prediccion, st.session_state.nuevo_paciente)
 
