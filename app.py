@@ -5,10 +5,11 @@ import pickle
 import os
 import sklearn
 
-@st.cache(allow_output_mutation=True)
-
 with open('modelo_entrenado.pkl', 'rb') as archivo_modelo:
     modelo = pickle.load(archivo_modelo)
+
+if 'nuevo_paciente' not in st.session_state:
+    st.session_state.nuevo_paciente = None
 
 x = []
 
@@ -68,39 +69,53 @@ def hacer_prediccion(prediccion, nuevo_paciente):
 
 
 if datos:
-    st.header("Datos")
-    st.text("A continuación introduce tus datos:")
+    st.header("Introducir Datos")
+    
+    # Formulario para introducir datos
+    with st.form(key='my_form'):
+        # Widget para introducir colesterol
+        cholesterol = st.number_input('Colesterol:', key='cholesterol', value=0.0)
 
-    key_cholesterol = "cholesterol"
-    cholesterol = st.number_input('Colesterol:', key=key_cholesterol)
-    
-    key_BMI = "BMI"
-    BMI = st.number_input('Índice de masa corporal', min_value=0.0, max_value=100.0, key=key_BMI)
-    
-    key_exercise = "exercise"
-    exercise = st.number_input('Horas de ejercicio semanales', min_value=0.0, max_value=100.0, key=key_exercise)
-    
-    key_systolic = "systolic"
-    systolic = st.number_input('Valor de tu presión arterial sistólica', min_value=0.0, max_value=200.0, key=key_systolic)
-    
-    key_stress = "stress"
-    stress = st.number_input('Tu nivel de estrés de 0 a 10', min_value=0.0, max_value=10.0, key=key_stress)
-    
-    key_obesidad = "obesidad"
-    obesidad = st.selectbox('Obesidad: (0: No, 1: Sí)', [0, 1], key=key_obesidad)
-    
-    key_sleep = "sleep"
-    sleep = st.number_input('Horas de sueño diarias', min_value=0.0, max_value=1.0, key=key_sleep)
-    
-    key_triglycerides = "triglycerides"
-    triglycerides = st.number_input('Trigliceridos', min_value=0.0, max_value=1000.0, key=key_triglycerides)
-    
-    key_diabetes = "diabetes"
-    diabetes = st.selectbox('Diabetes: (0: No, 1: Sí)', [0, 1], key=key_diabetes)
+        # Widget para introducir BMI
+        BMI = st.number_input('Índice de masa corporal', min_value=0.0, max_value=100.0, key='BMI', value=0.0)
 
-    if st.button("Procesar Datos"):
-        nuevo_paciente = {'Cholesterol': cholesterol, 'Diabetes': diabetes, 'Obesity': obesidad, 'Exercise Hours Per Week': exercise,
-            "Stresss Level": stress, 'BMI': BMI, 'Triglycerides': triglycerides, 'Sleep Hours Per Day': sleep, 'systolic': systolic}
+        # Widget para introducir horas de ejercicio semanales
+        exercise = st.number_input('Horas de ejercicio semanales', min_value=0.0, max_value=100.0, key='exercise', value=0.0)
+
+        # Widget para introducir valor de presión arterial sistólica
+        systolic = st.number_input('Valor de tu presión arterial sistólica', min_value=0.0, max_value=200.0, key='systolic', value=0.0)
+
+        # Widget para introducir nivel de estrés
+        stress = st.number_input('Tu nivel de estrés de 0 a 10', min_value=0.0, max_value=10.0, key='stress', value=0.0)
+
+        # Widget para introducir obesidad (0: No, 1: Sí)
+        obesidad = st.selectbox('Obesidad: (0: No, 1: Sí)', [0, 1], key='obesidad')
+
+        # Widget para introducir horas de sueño diarias
+        sleep = st.number_input('Horas de sueño diarias', min_value=0.0, max_value=24.0, key='sleep', value=0.0)
+
+        # Widget para introducir triglicéridos
+        triglycerides = st.number_input('Triglicéridos', min_value=0.0, max_value=1000.0, key='triglycerides', value=0.0)
+
+        # Widget para introducir diabetes (0: No, 1: Sí)
+        diabetes = st.selectbox('Diabetes: (0: No, 1: Sí)', [0, 1], key='diabetes')
+
+        # Botón para procesar datos
+        submit_button = st.form_submit_button(label='Procesar Datos')
+    
+    if submit_button:
+
+        nuevo_paciente = {
+            'Cholesterol': cholesterol,
+            'BMI': BMI,
+            'Exercise Hours Per Week': exercise,
+            'systolic': systolic,
+            'Stresss Level': stress,
+            'Obesity': obesidad,
+            'Sleep Hours Per Day': sleep,
+            'Triglycerides': triglycerides,
+            'Diabetes': diabetes
+        }
         x = dict_vals(nuevo_paciente)
         st.success("Datos procesados con éxito!")
 
@@ -110,10 +125,17 @@ if prediction:
     st.header("Predicciones")
     st.text("A continuación mostramos la prediccón:")
 
-    modelo.predict(x)
-    prediccion = modelo.predict_proba(x)[:, 1]
-    resultado = hacer_prediccion(prediccion, nuevo_paciente)
-    st.text(resultado)
+    if st.session_state.nuevo_paciente:
+        x = dict_vals(st.session_state.nuevo_paciente)
+        prediccion = modelo.predict_proba(x)[:, 1][0]
+        lifestyle_changes, mensaje_prediccion = hacer_prediccion(prediccion, st.session_state.nuevo_paciente)
+
+        st.write(f"Riesgo de ataque al corazón: {prediccion}")
+        for cambio in lifestyle_changes:
+            st.write(cambio)
+
+        if prediccion > 0.75:
+            st.warning("Deberías consultar con tu médico.")
 
 if home:
     st.header("Welcome page")
